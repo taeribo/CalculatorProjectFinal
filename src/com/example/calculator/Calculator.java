@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Calculator {
-    private final List<Integer> results = new ArrayList<>();
-    public Integer calculate(int num1, int num2, char op) {
-        int result;
+    private final List<Double> results = new ArrayList<>();
+    public Double calculate(int num1, int num2, char op) {
+        double result;
         switch (op) {
             case '+' -> result = num1 + num2;
             case '-' -> result = num1 - num2;
@@ -16,7 +16,7 @@ public class Calculator {
                     throw new IllegalArgumentException("0으로 나눌 수 없습니다.");
 
                 }
-                result = num1 / num2;
+                result = (double) num1 / num2;
             }
             default -> throw new ArithmeticException("지원하지 않는 연산자");
         }
@@ -25,7 +25,7 @@ public class Calculator {
 
         }
 
-    public List<Integer> getResults() {
+    public List<Double> getResults() {
         return results;
     }
     public void removeResults(){
