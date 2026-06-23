@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        Calculator calculator = new Calculator();
         String exit = "";
         while (!exit.equals("exit"))
         {
@@ -24,29 +25,22 @@ public class App {
             System.out.println("사칙 연산 기호(+,-,*,/)를 입력하세요");
             char op = sc.next().charAt(0);
             System.out.println("연산 기호 : " + op);
+            Integer result = calculator.calculate(num1,num2,op);
 
-            int result;
-            switch (op) {
-                case '+' -> result = num1 + num2;
-                case '-' -> result = num1 - num2;
-                case '*' -> result = num1 * num2;
-                case '/' -> {
-                    if (num2 == 0) {
-                        System.out.println("0으로 나눌 수 없습니다.");
-                        return;
-                    }
-                    result = num1 / num2;
-                }
-                default -> {
-                    System.out.println("지원하지 않는 연산자");
-                    return;
 
-                }
-            }
             System.out.println("결과 : " + result);
-            System.out.println("더 계산하시겠습니까? (exit 입력시 종료) / 계속 하려면 아무 키 입력.");
+            System.out.println("저장된 계산 결과 : " + calculator.getResults() );
+            System.out.println("먼저 저장된 결과를 삭제하십니까? (yes) / 계속 하려면 아무 키 입력.");
+            String answer = sc.next();
+            if("yes".equals(answer)){
+                calculator.removeResults();
+                System.out.println("가장 먼저 계산된 결과 삭제 후  : " + calculator.getResults());
+            }
+            System.out.println("계산기 종료를 원하면 exit 입력, / 계속하려면 아무 키 입력");
             exit = sc.next();
         }
+        System.out.println("계산기를 종료합니다.");
+        sc.close();
     }
 }
 
